@@ -14,3 +14,6 @@ Install
 
         npm install prerender-user-agent-render
         
+Add this to your Prerender server.js:
+
+    server.use(require('prerender-user-agent-render'));
