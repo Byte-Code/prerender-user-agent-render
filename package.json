@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Byte-Code/prerender-user-agent-render.git"
+    "url": "https://github.com/Byte-Code/prerender-user-agent-render"
   },
   "scripts": {
     "test": "mocha test/*.js"
@@ -26,7 +26,6 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.1.1",
-    "eslint-config-google": "^0.6.0",
     "mocha": "^2.5.3",
     "sinon": "^1.17.4"
   }
