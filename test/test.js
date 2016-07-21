@@ -10,7 +10,7 @@ const assert = chai.assert;
 const sinon = require('sinon');
 
 
-describe('Render', function() {
+describe('Prerender User Agent Render', function() {
     let sandbox;
     let isMobile = false;
     let isTablet = false;
