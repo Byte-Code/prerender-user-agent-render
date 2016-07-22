@@ -12,173 +12,43 @@ const sinon = require('sinon');
 
 describe('Prerender User Agent Render', function() {
     let sandbox;
-    let isMobile = false;
-    let isTablet = false;
-    let isDesktop = false;
-    let isBot = false;
-    let userAgent = 'Normal';
-    let defaultUserAgent = 'Not set';
-    var spyResolve;
-
-
     beforeEach(function(){
         sandbox = sinon.sandbox.create();
-        spyResolve = sandbox.spy();
-
-        pUserAgentRender.settings = {userAgent: defaultUserAgent};
-
     });
 
     afterEach(function() {
         sandbox.restore();
     });
 
-    describe('Mobile', function(){
+    describe('User Agent Render', function(){
 
-        beforeEach(function() {
-            isMobile = true;
-            isBot = false;
-        });
+        it('Success', function() {
 
-        afterEach(function(){
-            isMobile = false;
-            isBot = false;
-        });
+            var fakeThen = {
+                then: sinon.stub()
+            };
 
-        it('The user agent is mobile', function() {
-            userAgent = 'iPhone';
 
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
+            var fakePrerender = {
+                run: function() {
+                    return fakeThen;
+                }
+            };
 
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.mobile.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.mobile.height);
+            var phantom = {};
+            var req = { headers: {}, prerender: {page: fakePrerender} };
+            var res = {};
+            var fakeNext = sinon.stub;
 
-            assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-        });
+            req.headers['user-agent'] = 'mobile' ;
 
-        it('The user agent is bot mobile', function() {
-            userAgent = 'Google Bot';
-            isBot = true;
 
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
+            pUserAgentRender.onPhantomPageCreate(phantom, req, res, fakeNext);
 
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.mobile.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.mobile.height);
+            assert(fakeThen.then.called);
 
-            assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
-        });
-    });
-
-    describe('Tablet', function(){
-
-        beforeEach(function() {
-            isTablet = true;
-            isBot = false;
-        });
-
-        afterEach(function() {
-            isTablet = false;
-            isBot = false;
-        });
-
-        it('The user agent is tablet', function() {
-            userAgent = 'iPad';
-
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
-
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.tablet.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.tablet.height);
-
-            assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-        });
-
-        it('The user agent is tablet bot', function() {
-            userAgent = 'Google Bot';
-
-            isBot = true;
-
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
-
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.tablet.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.tablet.height);
-
-            assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
-        });
-    });
-
-    describe('Desktop', function(){
-
-        beforeEach(function() {
-            isDesktop = true;
-            isBot = false;
-        });
-
-        afterEach(function() {
-            isDesktop = false;
-            isBot = false;
-        });
-
-        it('The user agent is desktop', function() {
-            userAgent = 'Google Chrome';
-
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
-
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.desktop.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.desktop.height);
-
-            assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-        });
-
-        it('The user agent is desktop bot', function() {
-            userAgent = 'Google Bot';
-
-            isBot = true;
-
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
-
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.desktop.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.desktop.height);
-
-            assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
-        });
-    });
-
-    describe('The device type is not recognized', function(){
-
-        afterEach(function(){
-            isBot = false;
-        });
-
-        it('Device not recognized', function(){
-            userAgent = 'Not recognized';
-
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
-
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.desktop.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.desktop.height);
-
-            assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-        });
-
-        it('Device not recognized but is a bot', function(){
-            userAgent = 'Not recognized';
-            isBot = true;
-
-            pUserAgentRender.renderLogic(userAgent, isMobile, isTablet, isDesktop, isBot, spyResolve);
-
-            assert(spyResolve.called);
-            assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.screenDeviceRender.desktop.width);
-            assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.screenDeviceRender.desktop.height);
-
-            assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
         });
 
     });
+
 });
