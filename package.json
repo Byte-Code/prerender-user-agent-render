@@ -1,6 +1,6 @@
 {
   "name": "prerender-user-agent-render",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Prerender User Agent Plugin for render different template with different user agent",
   "main": "index.js",
   "author": "Byte-code",
