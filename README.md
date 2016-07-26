@@ -17,3 +17,5 @@ Install
 Add this to your Prerender server.js:
 
         server.use(require('prerender-user-agent-render'));
+        
+[License](LICENSE)
