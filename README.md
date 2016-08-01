@@ -1,4 +1,4 @@
-#Prerender User Agent Render
+#Prerender User Agent Render [![Build Status](https://travis-ci.org/Byte-Code/prerender-user-agent-render.svg?branch=master)](https://travis-ci.org/Byte-Code/prerender-user-agent-render) ![Dependencies](https://david-dm.org/Byte-Code/prerender-user-agent-render.svg)
 
 
 A plugin for [Prerender](https://github.com/prerender/prerender) that set the windows size of phantomjs 
