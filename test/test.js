@@ -5,9 +5,9 @@
 
 var pUserAgentRender = require('../');
 
-const chai = require('chai');
-const assert = chai.assert;
-const sinon = require('sinon');
+var chai = require('chai');
+var assert = chai.assert;
+var sinon = require('sinon');
 
 describe('Prerender User Agent Render', function () {
 
