@@ -11,7 +11,7 @@ var sinon = require('sinon');
 
 describe('Prerender User Agent Render', function () {
 
-    let sandbox;
+    var sandbox;
     beforeEach(function () {
         sandbox = sinon.sandbox.create();
     });
@@ -24,17 +24,17 @@ describe('Prerender User Agent Render', function () {
 
         it('Run function is corrected call', function () {
 
-            let fakeThen = {
+            var fakeThen = {
                 then: sinon.stub()
             };
 
-            let fakePrerender = {
+            var fakePrerender = {
                 run: function () {
                     return fakeThen;
                 }
             };
 
-            let phantom = {},
+            var phantom = {},
                 req = {headers: {}, prerender: {page: fakePrerender}},
                 res = {},
                 fakeNext = sinon.stub;
@@ -71,9 +71,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Mobile', function () {
 
-                let userAgent = 'Mobile';
+                var userAgent = 'Mobile';
 
-                let ua = createUserAgentParsed(true, false, false);
+                var ua = createUserAgentParsed(true, false, false);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
@@ -85,9 +85,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Mobile Bot', function () {
 
-                let userAgent = 'Mobile Bot';
+                var userAgent = 'Mobile Bot';
 
-                let ua = createUserAgentParsed(true, false, true);
+                var ua = createUserAgentParsed(true, false, true);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
@@ -99,9 +99,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Tablet', function () {
 
-                let userAgent = 'Tablet';
+                var userAgent = 'Tablet';
 
-                let ua = createUserAgentParsed(false, true, false);
+                var ua = createUserAgentParsed(false, true, false);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
@@ -113,9 +113,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Tablet Bot', function () {
 
-                let userAgent = 'Tablet Bot';
+                var userAgent = 'Tablet Bot';
 
-                let ua = createUserAgentParsed(false, true, true);
+                var ua = createUserAgentParsed(false, true, true);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
@@ -127,9 +127,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Desktop', function () {
 
-                let userAgent = 'Desktop';
+                var userAgent = 'Desktop';
 
-                let ua = createUserAgentParsed(false, false, false);
+                var ua = createUserAgentParsed(false, false, false);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
@@ -141,9 +141,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Desktop Bot', function () {
 
-                let userAgent = 'Desktop Bot';
+                var userAgent = 'Desktop Bot';
 
-                let ua = createUserAgentParsed(false, false, true);
+                var ua = createUserAgentParsed(false, false, true);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
@@ -155,9 +155,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Both Mobile and Tablet, Tablet is choose', function () {
 
-                let userAgent = 'Tablet';
+                var userAgent = 'Tablet';
 
-                let ua = createUserAgentParsed(true, true, false);
+                var ua = createUserAgentParsed(true, true, false);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
@@ -169,9 +169,9 @@ describe('Prerender User Agent Render', function () {
 
             it('Both Mobile Bot and Tablet Bot, Tablet Bot is choose', function () {
 
-                let userAgent = 'Tablet Bot';
+                var userAgent = 'Tablet Bot';
 
-                let ua = createUserAgentParsed(true, true, true);
+                var ua = createUserAgentParsed(true, true, true);
 
                 pUserAgentRender.testLogic(userAgent, ua, spyResolve);
 
