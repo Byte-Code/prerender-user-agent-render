@@ -11,6 +11,12 @@ var sinon = require('sinon');
 
 describe('Prerender User Agent Render', function () {
 
+    var screenDeviceRender= {
+        mobile: {width: 320, height: 480},
+        tablet: {width: 768, height: 1024},
+        desktop: {width: 1024, height: 600}
+    };
+
     var sandbox;
     beforeEach(function () {
         sandbox = sinon.sandbox.create();
@@ -79,8 +85,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.mobile.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.mobile.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.mobile.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.mobile.height);
             });
 
             it('Mobile Bot', function () {
@@ -93,8 +99,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.mobile.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.mobile.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.mobile.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.mobile.height);
             });
 
             it('Tablet', function () {
@@ -107,8 +113,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.tablet.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.tablet.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.tablet.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.tablet.height);
             });
 
             it('Tablet Bot', function () {
@@ -121,8 +127,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.tablet.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.tablet.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.tablet.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.tablet.height);
             });
 
             it('Desktop', function () {
@@ -135,8 +141,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.desktop.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.desktop.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.desktop.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.desktop.height);
             });
 
             it('Desktop Bot', function () {
@@ -149,8 +155,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.desktop.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.desktop.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.desktop.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.desktop.height);
             });
 
             it('Both Mobile and Tablet, Tablet is choose', function () {
@@ -163,8 +169,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, userAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.tablet.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.tablet.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.tablet.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.tablet.height);
             });
 
             it('Both Mobile Bot and Tablet Bot, Tablet Bot is choose', function () {
@@ -177,8 +183,8 @@ describe('Prerender User Agent Render', function () {
 
                 assert(spyResolve.called);
                 assert.equal(pUserAgentRender.settings.userAgent, defaultUserAgent);
-                assert.equal(pUserAgentRender.viewportSize.width, pUserAgentRender.testConst.tablet.width);
-                assert.equal(pUserAgentRender.viewportSize.height, pUserAgentRender.testConst.tablet.height);
+                assert.equal(pUserAgentRender.viewportSize.width, screenDeviceRender.tablet.width);
+                assert.equal(pUserAgentRender.viewportSize.height, screenDeviceRender.tablet.height);
             });
 
         });
