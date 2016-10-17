@@ -14,7 +14,7 @@ describe('Prerender User Agent Render', function () {
     var screenDeviceRender= {
         mobile: {width: 320, height: 480},
         tablet: {width: 768, height: 1024},
-        desktop: {width: 1024, height: 600}
+        desktop: {width: 1440, height: 718}
     };
 
     var sandbox;
